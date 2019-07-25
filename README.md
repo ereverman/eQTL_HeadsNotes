@@ -27,6 +27,11 @@
 ```
 sh Heads_config.sh
 ```
+  * move the Reference file to the /refs/ directory.
+  
+4. Combine data files from the run and re-runs of plate 2
+
+
 
 4. Run generate_JOBARRAY_input.sh
 
