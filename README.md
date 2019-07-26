@@ -1,6 +1,6 @@
 # eQTL_HeadsNotes
 
-192 samples, NextSeq HO-PE37 with 1% PhiX and using 1-mismatch demultiplexing.
+Started with 192 genotypes. 94 samples (188 files) from plate 1; 96 samples from plate 2, NextSeq HO-PE37 with 1% PhiX and using 1-mismatch demultiplexing.
 
 ## Project was initiated with Atom: eQTLCuAdult
 
@@ -31,9 +31,68 @@ sh Heads_config.sh
   
 4. Combine data files from the run and re-runs of plate 2
 
+There are two runs of plate 2 because of an underclustering issue on the original HO run. There are two resulting directories have exactly the same named 192 files that need to simply be concatenated and sent to a new directory. 
 
+```
+# This is from Boryana--didn't work because the files were contatenated twice
+# The code has echo training wheels on (lol)
 
-4. Run generate_JOBARRAY_input.sh
+for file in ERE-TruSeq-P2_NextSeqHO_Run1/*_001.fastq.gz
+do
+  for RN in "R1" "R2"
+  do
+    theName=$(basename ${file})
+    sample=${theName%_S*_*.fastq.gz}
+    # show me the files that will be concatenated
+    echo $(ls ERE-TruSeq-P2_NextSeq{HO,MO}_*/${sample}*_${RN}_001.fastq.gz)
+    # construct the name of the combined file
+    newName="${sample}_${RN}_comb.fastq.gz"
+    # show me the name of the combined file
+    echo "${newName}"
+    # show me the command that will be run to combine the files
+    echo "zcat ERE-TruSeq-P2_NextSeq{HO,MO}_*/${sample}_*_${RN}_001.fastq.gz >> data/combined/${newName} "
+    echo "---------" # this is just to makew it more readable in terminal
+  done
+done
+
+# This is the version that ended up working:
+
+for file in ERE-TruSeq-P2_NextSeqHO_Run1/*R1_001.fastq.gz
+do
+  for RN in "R1" "R2"
+  do
+    theName=$(basename ${file})
+    sample=${theName%_S*_*.fastq.gz}
+    # show me the files that will be concatenated
+    echo $(ls ERE-TruSeq-P2_NextSeq{HO,MO}_*/${sample}*_${RN}_001.fastq.gz)
+    # construct the name of the combined file
+    newName="${sample}_${RN}_comb.fastq.gz"
+    # show me the name of the combined file
+    echo "${newName}"
+    # show me the command that will be run to combine the files
+    zcat ERE-TruSeq-P2_NextSeq{HO,MO}_*/${sample}_*_${RN}_001.fastq.gz >> data/combined/${newName}
+    echo "---------" # this is just to makew it more readable in terminal
+  done
+done
+
+```
+
+5. Move the files from the other run to the combined directory:
+
+```
+cp cp ERE-TruSeq-P1/*.gz data/combined/
+
+```
+
+6. Check the number of files in the combined directory:
+
+```
+ls | wc -l
+
+# should be 380
+```
+
+4. Run generate_JOBARRAY_input.sh from main eQTL_Heads directory
 
 ```
 sh generate_JOBARRAY_input.sh <PROJECTNAME> <PATH_TO_FILES>
