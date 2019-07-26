@@ -92,18 +92,26 @@ ls | wc -l
 # should be 380
 ```
 
-4. Run generate_JOBARRAY_input.sh from main eQTL_Heads directory
+7. Run generate_JOBARRAY_input.sh from main eQTL_Heads directory
 
 ```
 sh generate_JOBARRAY_input.sh <PROJECTNAME> <PATH_TO_FILES>
+
+# Check the file with nano
+
+nano Heads_sample_file_paths_ARRAY.txt
+
+# Ctrl + X to exit
 ```
 
-5. fastp quality filtering for paired end data.
+8. fastp quality filtering for paired end data followed by Kallisto pseudoalignment
  * used ARRAY method.
  * check that the first job runs, then do the rest.
  
 ```
 sbatch --array [1] PATH_TO/Heads_ARRAY_sjmac.sh
+
+# Check queue
 
 sbatch --array [2-3] PATH_TO/Heads_ARRAY_sjmac.sh
 ```
