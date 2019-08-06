@@ -125,7 +125,28 @@ sbatch --array [1] PATH_TO/Heads_ARRAY_sjmac.sh
 # Check queue
 sq
 
-sbatch --array [2-3] PATH_TO/Heads_ARRAY_sjmac.sh
+sbatch --array [2-190] PATH_TO/Heads_ARRAY_sjmac.sh
 ```
+
+## Clust Analysis:
+
+1. Data was analyzed using sleuth in R. R script file is RNAseqDE_Heads.R in the ML_eQTLCuAdult project directory.
+
+2. To analyze kallisto data with Clust, we need the target_id, sample, and TPM data output using the kal.table function. These data are already normalized, but they will be normalized again in clust.
+
+3. Open terminal and run
+
+```
+# create conda environment if not already done:
+# conda create -c bioconda -n ClustEnv clust
+
+# Go to environment in the directory with tpm data
+source activate ClustEnv
+
+clust tpm.data.txt -n 101 3 4 -o clust_output_Heads
+
+```
+
+4. Make nicer plots in R.
 
 
