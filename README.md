@@ -1,6 +1,8 @@
-# eQTL_HeadsNotes
+# eQTL_HeadsNotes, also followed for eQTL_Midgut
 
-Started with 192 genotypes. 94 samples (188 files) from plate 1; 96 samples from plate 2, NextSeq HO-PE37 with 1% PhiX and using 1-mismatch demultiplexing.
+Heads: Started with 94 samples (188 files) from plate 1; 96 samples from plate 2, NextSeq HO-PE37 with 1% PhiX and using 1-mismatch demultiplexing. Plate 2 was also sequenced MO because of underclustering issues.
+
+Midgut: 96 samples from plates 3 and 4.
 
 ## Project was initiated with Atom: eQTLCuAdult
 
@@ -28,7 +30,14 @@ Started with 192 genotypes. 94 samples (188 files) from plate 1; 96 samples from
 sh Heads_config.sh
 ```
   * move the Reference file to the /refs/ directory.
+  * move data to the data combined directory
   
+```
+# from teminal on local computer
+
+scp ./*.gz hpc:/panfs/pfs.local/scratch/sjmac/e284e911/eQTL_Midgut/data/combined
+```
+
 4. Combine data files from the run and re-runs of plate 2
 
 There are two runs of plate 2 because of an underclustering issue on the original HO run. There are two resulting directories have exactly the same named 192 files that need to simply be concatenated and sent to a new directory. 
