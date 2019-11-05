@@ -1,0 +1,10 @@
+# recapitulating what i remember from the last bit of code I wrote for midgut analysis:
+
+# Start with final.data.tpm and mapp_matrix_effect files and InteractionFull_significant/InteractionFull_results
+
+# three types of comparisons for the change in gene expression between the resistant and sensitive lines under each treatment condition and within each group under each treatment condition.
+
+1. transform the final.data.tpm file and reassign the gene names as column headers
+2. copy the sample information from mapp_effect_matrix
+3. convert the wide file to long format and then remove unnecessary files to save memory
+4. 
