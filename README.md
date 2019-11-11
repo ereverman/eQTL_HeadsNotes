@@ -38,7 +38,7 @@ sh Heads_config.sh
 /panfs/pfs.local/work/sjmac/kinbre_projects/master_refs/drosophila_melanogaster
 
 # theres a script in this directory with information used to download (and rename) the files.
-# then index the transcriptome if needed:
+# then index the transcriptome if needed (although this probably requires the correct environment):
 
 kallisto index -i <OUTFILE> <INFILE>
 ```
