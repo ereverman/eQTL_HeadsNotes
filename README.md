@@ -31,6 +31,17 @@ sh Heads_config.sh
 ```
   * move the Reference file to the /refs/ directory.
   * move data to the data combined directory
+  * reminder for where I got the reference i used:https://github.com/pachterlab/kallisto-transcriptome-indices, https://uswest.ensembl.org/info/data/ftp/index.html
+  
+```
+# location on the cluster:
+/panfs/pfs.local/work/sjmac/kinbre_projects/master_refs/drosophila_melanogaster
+
+# theres a script in this directory with information used to download (and rename) the files.
+# then index the transcriptome if needed:
+
+kallisto index -i <OUTFILE> <INFILE>
+```
   
 ```
 # from teminal on local computer
