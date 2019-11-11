@@ -4,6 +4,8 @@ Heads: Started with 94 samples (188 files) from plate 1; 96 samples from plate 2
 
 Midgut: 96 samples from plates 3 and 4.
 
+might need to module load anaconda
+
 ## Project was initiated with Atom: eQTLCuAdult
 
 1. Open and link new project in Atom:
